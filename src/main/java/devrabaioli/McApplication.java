@@ -1,5 +1,7 @@
 package devrabaioli;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import java.util.Arrays;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,12 +15,28 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-@SpringBootApplication
-public class McApplication {
+import devrabaioli.domain.Categoria;
+import devrabaioli.repositories.CategoriaRepository;
 
+@SpringBootApplication
+public class McApplication implements CommandLineRunner{
+
+	@Autowired
+	private CategoriaRepository categoriaRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(McApplication.class, args);
 	}
+	
+	@Override
+	public void run(String... args) throws Exception {
+		Categoria cat1 = new Categoria(null, "Informática");
+		Categoria cat2 = new Categoria(null, "Escritório");
+
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		
+	}
+	
 
 	@Configuration
 	@EnableWebSecurity
@@ -45,4 +63,9 @@ public class McApplication {
 		}
 
 	}
+
+
+
+
+	
 }

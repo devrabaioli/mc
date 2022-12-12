@@ -22,6 +22,7 @@ import devrabaioli.repositories.CategoriaRepository;
 public class McApplication implements CommandLineRunner{
 
 	@Autowired
+	
 	private CategoriaRepository categoriaRepository;
 	
 	public static void main(String[] args) {

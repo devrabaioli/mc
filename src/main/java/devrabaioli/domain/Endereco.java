@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Endereco implements Serializable {
 	
@@ -29,10 +31,15 @@ public class Endereco implements Serializable {
 	@JoinTable(name = "cidade_id")
 	private Cidade cidade;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinTable(name = "cliente_id")
 	private Cliente cliente;
 
+	public Endereco() {}
+	
+	
+	
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
 			Cidade cidade, Cliente cliente) {
 		super();
